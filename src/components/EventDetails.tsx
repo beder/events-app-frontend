@@ -51,7 +51,7 @@ export function EventDetails({ event }: { event: Event }) {
                 </Button>
               </div>
               <p className="text-base font-semibold leading-7 text-indigo-600">
-                {dayjs(event.date).format('MMM D').toUpperCase()}
+                {dayjs(event.date).format('MMM DD').toUpperCase()}
               </p>
               <h2 className="mt-2 text-5xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                 {event.name}
