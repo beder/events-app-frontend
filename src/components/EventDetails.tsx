@@ -1,24 +1,25 @@
 import Image from 'next/image'
+import type { Event } from '@/types'
 
 import backgroundImage from '@/images/background-call-to-action.jpg'
 
 import { CalendarIcon, MapPinIcon } from '@heroicons/react/20/solid'
 import { Button } from './Button'
 
-const features = [
-  {
-    name: 'Date and time',
-    description: 'Mon, August 2, 2024 from 8:00 AM to 10:00 AM',
-    icon: CalendarIcon,
-  },
-  {
-    name: 'Location',
-    description: 'Online event',
-    icon: MapPinIcon,
-  },
-]
+export function EventDetails({ event }: { event: Event }) {
+  const features = [
+    {
+      name: 'Date',
+      description: event.date?.toString(),
+      icon: CalendarIcon,
+    },
+    {
+      name: 'Location',
+      description: event.location,
+      icon: MapPinIcon,
+    },
+  ]
 
-export function EventDetails() {
   return (
     <div className="overflow-hidden bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl md:px-6 lg:px-8">
@@ -37,7 +38,11 @@ export function EventDetails() {
           <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
               <div className="mb-3">
-                <Button href="/event/edit" variant="outline" color="indigo">
+                <Button
+                  href={`/events/${event.id}/edit`}
+                  variant="outline"
+                  color="indigo"
+                >
                   Edit Event
                 </Button>
                 <Button href="#" color="red" className="ml-6">
@@ -49,7 +54,7 @@ export function EventDetails() {
                 AUG 2
               </p>
               <h2 className="mt-2 text-5xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Say goodbye to your job
+                {event.name}
               </h2>
               <p className="mt-6 text-lg leading-8 text-gray-600">
                 by{' '}
@@ -64,11 +69,7 @@ export function EventDetails() {
           </div>
           <div className="px-6 lg:px-0">
             <p className="text-lg leading-8 text-gray-600">
-              Embark on a journey of transformation as we bid farewell to your
-              current job and welcome the exhilarating world of
-              entrepreneurship! This event is dedicated to celebrating your
-              decision to start your own business and pursue your passion with
-              unwavering determination.
+              {event.description}
             </p>
           </div>
           <div className="px-6 lg:px-0">
