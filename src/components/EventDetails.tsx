@@ -45,7 +45,7 @@ export function EventDetails({ event }: { event: Event }) {
                 >
                   Edit Event
                 </Button>
-                <Button href="#" color="red" className="ml-6">
+                <Button color="red" className="ml-6">
                   Delete
                 </Button>
               </div>
