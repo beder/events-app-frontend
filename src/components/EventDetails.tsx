@@ -5,12 +5,13 @@ import backgroundImage from '@/images/background-call-to-action.jpg'
 
 import { CalendarIcon, MapPinIcon } from '@heroicons/react/20/solid'
 import { Button } from './Button'
+import dayjs from 'dayjs'
 
 export function EventDetails({ event }: { event: Event }) {
   const features = [
     {
       name: 'Date',
-      description: event.date?.toString(),
+      description: dayjs(event.date).format('ddd, MMMM D, YYYY'),
       icon: CalendarIcon,
     },
     {
@@ -49,9 +50,8 @@ export function EventDetails({ event }: { event: Event }) {
                   Delete
                 </Button>
               </div>
-
               <p className="text-base font-semibold leading-7 text-indigo-600">
-                AUG 2
+                {dayjs(event.date).format('MMM D').toUpperCase()}
               </p>
               <h2 className="mt-2 text-5xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                 {event.name}

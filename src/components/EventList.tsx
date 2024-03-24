@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import backgroundImage from '@/images/background-call-to-action.jpg'
+import dayjs from 'dayjs'
 
 export function EventList({ events }: { events: Event[] }) {
   return (
@@ -26,7 +27,7 @@ export function EventList({ events }: { events: Event[] }) {
               <div className="flex flex-1 flex-col space-y-2 p-4">
                 <div className="flex flex-1 flex-col justify-end">
                   <p className="text-base font-medium text-gray-500">
-                    {event.date?.toString()}
+                    {dayjs(event.date).format('ddd, MMM D, YYYY')}
                   </p>
                 </div>
                 <h3 className="text-base font-medium text-gray-900">
