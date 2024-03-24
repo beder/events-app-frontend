@@ -40,7 +40,7 @@ export function EventForm({ event }: { event?: Event }) {
         <div className="overflow-hidden bg-white py-24 sm:py-32">
           <div className="mx-auto max-w-7xl md:px-6 lg:px-8">
             <h1 className="text-3xl font-medium text-gray-900">
-              Create an event
+              {event?.id ? 'Edit' : 'Create'} Event
             </h1>
             <p className="mt-4 text-lg font-normal text-gray-600">
               Please fill all the required information.
