@@ -1,3 +1,4 @@
+import { SelectOption } from '@/types'
 import { ControlledSelectField } from './ControlledSelectField'
 import { Controller, useFormContext } from 'react-hook-form'
 
@@ -7,7 +8,7 @@ export function SelectField({
   options,
 }: React.ComponentPropsWithoutRef<'select'> & {
   name: string
-  options: { id: string; name: string }[]
+  options: SelectOption[]
 }) {
   const { control } = useFormContext()
 

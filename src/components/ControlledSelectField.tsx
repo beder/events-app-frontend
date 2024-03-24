@@ -1,12 +1,11 @@
 import { Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { SelectOption } from '@/types'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
-
-type OptionType = { id: string; name: string }
 
 export function ControlledSelectField({
   className,
@@ -15,7 +14,7 @@ export function ControlledSelectField({
   value,
 }: Omit<React.ComponentPropsWithoutRef<'select'>, 'id'> & {
   onChange: (value: string) => void
-  options: OptionType[]
+  options: SelectOption[]
   value: string
 }) {
   const getName = (value: string) => {

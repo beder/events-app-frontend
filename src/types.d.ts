@@ -1,3 +1,10 @@
+export type CreateEventPayload = {
+  name: string
+  date: Date
+  description: string
+  location: string
+}
+
 export type Event = {
   id?: number
   name: string
@@ -6,11 +13,9 @@ export type Event = {
   location: string
 }
 
-export type CreateEventPayload = {
+export type SelectOption = {
+  id: string
   name: string
-  date: Date
-  description: string
-  location: string
 }
 
 export type UpdateEventPayload = CreateEventPayload & {
