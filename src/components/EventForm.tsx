@@ -19,7 +19,7 @@ const locations = [
   { id: 'online', name: 'Online' },
 ]
 
-export function EventForm({ event }: { event: Event }) {
+export function EventForm({ event }: { event?: Event }) {
   const formMethods = useForm<CreateEventPayload | UpdateEventPayload>({
     defaultValues: event,
   })
@@ -27,7 +27,7 @@ export function EventForm({ event }: { event: Event }) {
   const { handleSubmit } = formMethods
 
   const onSubmit = (data: CreateEventPayload | UpdateEventPayload) => {
-    if (!event.id) {
+    if (!event?.id) {
       createEvent(data)
     } else {
       updateEvent(event.id, data as UpdateEventPayload)
