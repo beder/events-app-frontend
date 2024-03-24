@@ -1,5 +1,11 @@
 import { EventForm } from '@/components/EventForm'
 
 export default function Home() {
-  return <EventForm />
+  const event = {
+    date: new Date(),
+    location: 'paris',
+    name: '',
+  }
+
+  return <EventForm event={event} />
 }
