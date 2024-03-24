@@ -15,6 +15,6 @@ export async function createEvent(data: CreateEventPayload) {
 
     return response.json()
   } catch (error) {
-    return []
+    return {}
   }
 }
