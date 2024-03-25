@@ -24,7 +24,10 @@ export function EventForm({ event }: { event?: Event }) {
   const router = useRouter()
 
   const formMethods = useForm<CreateEventPayload | UpdateEventPayload>({
-    defaultValues: event,
+    defaultValues: {
+      ...event,
+      date: event?.date?.split('T')[0],
+    },
   })
 
   const { handleSubmit } = formMethods
