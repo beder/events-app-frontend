@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import type { Event } from '@/types'
 
@@ -6,6 +8,8 @@ import backgroundImage from '@/images/background-call-to-action.jpg'
 import { CalendarIcon, MapPinIcon } from '@heroicons/react/20/solid'
 import { Button } from './Button'
 import dayjs from 'dayjs'
+import { useDeleteEvent } from '@/services/deleteEvent'
+import { useRouter } from 'next/navigation'
 
 export function EventDetails({ event }: { event: Event }) {
   const features = [
@@ -20,6 +24,22 @@ export function EventDetails({ event }: { event: Event }) {
       icon: MapPinIcon,
     },
   ]
+
+  const router = useRouter()
+
+  const deleteEvent = useDeleteEvent()
+
+  const handleDelete = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    if (event.id && confirm('Are you sure you want to delete this event?')) {
+      const result = await deleteEvent(event.id)
+
+      if (result) {
+        router.push('/')
+      }
+    }
+  }
 
   return (
     <div className="overflow-hidden bg-white py-24 sm:py-32">
@@ -38,18 +58,19 @@ export function EventDetails({ event }: { event: Event }) {
           </div>
           <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-              <div className="mb-3">
+              <form className="mb-3" onSubmit={handleDelete}>
                 <Button
                   href={`/events/${event.id}/edit`}
                   variant="outline"
                   color="indigo"
+                  type="button"
                 >
                   Edit Event
                 </Button>
-                <Button color="red" className="ml-6">
+                <Button color="red" className="ml-6" type="submit">
                   Delete
                 </Button>
-              </div>
+              </form>
               <p className="text-base font-semibold leading-7 text-indigo-600">
                 {dayjs(event.date).format('MMM DD').toUpperCase()}
               </p>
