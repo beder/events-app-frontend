@@ -8,6 +8,7 @@ import type { CreateEventPayload, Event, UpdateEventPayload } from '@/types'
 import { FormProvider, useForm } from 'react-hook-form'
 import { createEvent } from '@/services/createEvent'
 import { updateEvent } from '@/services/updateEvent'
+import { useRouter } from 'next/navigation'
 
 const locations = [
   { id: 'paris', name: 'Paris' },
@@ -20,17 +21,21 @@ const locations = [
 ]
 
 export function EventForm({ event }: { event?: Event }) {
+  const router = useRouter()
+
   const formMethods = useForm<CreateEventPayload | UpdateEventPayload>({
     defaultValues: event,
   })
 
   const { handleSubmit } = formMethods
 
-  const onSubmit = (data: CreateEventPayload | UpdateEventPayload) => {
-    if (!event?.id) {
-      createEvent(data)
-    } else {
-      updateEvent(event.id, data as UpdateEventPayload)
+  const onSubmit = async (data: CreateEventPayload | UpdateEventPayload) => {
+    const result = event?.id
+      ? await updateEvent(event.id, data as UpdateEventPayload)
+      : await createEvent(data)
+
+    if (result?.id) {
+      router.push(`/events/${result.id}`)
     }
   }
 
