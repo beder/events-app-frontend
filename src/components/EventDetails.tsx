@@ -10,6 +10,7 @@ import { Button } from './Button'
 import dayjs from 'dayjs'
 import { useDeleteEvent } from '@/services/deleteEvent'
 import { useRouter } from 'next/navigation'
+import { useAuth } from '@clerk/nextjs'
 
 export function EventDetails({ event }: { event: Event }) {
   const features = [
@@ -24,6 +25,8 @@ export function EventDetails({ event }: { event: Event }) {
       icon: MapPinIcon,
     },
   ]
+
+  const { userId } = useAuth()
 
   const router = useRouter()
 
@@ -58,19 +61,21 @@ export function EventDetails({ event }: { event: Event }) {
           </div>
           <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-              <form className="mb-3" onSubmit={handleDelete}>
-                <Button
-                  href={`/events/${event.id}/edit`}
-                  variant="outline"
-                  color="indigo"
-                  type="button"
-                >
-                  Edit Event
-                </Button>
-                <Button color="red" className="ml-6" type="submit">
-                  Delete
-                </Button>
-              </form>
+              {userId === event.userId && (
+                <form className="mb-3" onSubmit={handleDelete}>
+                  <Button
+                    href={`/events/${event.id}/edit`}
+                    variant="outline"
+                    color="indigo"
+                    type="button"
+                  >
+                    Edit Event
+                  </Button>
+                  <Button color="red" className="ml-6" type="submit">
+                    Delete
+                  </Button>
+                </form>
+              )}
               <p className="text-base font-semibold leading-7 text-indigo-600">
                 {dayjs(event.date).format('MMM DD').toUpperCase()}
               </p>

@@ -11,6 +11,7 @@ export type Event = {
   date: string
   description?: string
   location: string
+  userId: string
 }
 
 export type SelectOption = {

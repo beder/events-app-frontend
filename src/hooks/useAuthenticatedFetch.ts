@@ -2,6 +2,7 @@ import { useAuth } from '@clerk/nextjs'
 
 export function useAuthenticatedFetch() {
   const { getToken } = useAuth()
+
   const fetcher = async (
     url: string | URL | Request,
     requestOptions?: RequestInit | undefined,
