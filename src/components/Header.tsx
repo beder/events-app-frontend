@@ -8,15 +8,13 @@ import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Logo } from '@/components/Logo'
 import { Button } from './Button'
+import { SignOutButton, SignedIn, SignedOut } from '@clerk/nextjs'
 
-const user = {
-  name: 'Chelsea Hagon',
-  email: 'chelsea.hagon@example.com',
-}
 const navigation = [
   { name: 'Home', href: '/', current: true },
-  { name: 'Create Event', href: '/event/edit', current: false },
+  { name: 'Create Event', href: '/new', current: false },
 ]
+
 const userNavigation = [{ name: 'Sign out', href: '#' }]
 
 function classNames(...classes: string[]) {
@@ -84,13 +82,23 @@ export function Header() {
                   </Popover.Button>
                 </div>
                 <div className="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
-                  <Button href="/events/new" variant="outline" color="indigo">
-                    Create Event
-                  </Button>
+                  <SignedIn>
+                    <Button href="/new" variant="outline" color="indigo">
+                      Create Event
+                    </Button>
 
-                  <Button href="/login" color="indigo" className="ml-6">
-                    Sign in
-                  </Button>
+                    <SignOutButton>
+                      <Button href="/sign-in" color="indigo" className="ml-6">
+                        Sign out
+                      </Button>
+                    </SignOutButton>
+                  </SignedIn>
+
+                  <SignedOut>
+                    <Button href="/sign-in" color="indigo" className="ml-6">
+                      Sign in
+                    </Button>
+                  </SignedOut>
 
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-5 flex-shrink-0">
@@ -98,7 +106,6 @@ export function Header() {
                       <Menu.Button className="relative flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
-                        {user.name}
                       </Menu.Button>
                     </div>
                     <Transition
@@ -152,16 +159,6 @@ export function Header() {
                 ))}
               </div>
               <div className="border-t border-gray-200 pb-3 pt-4">
-                <div className="mx-auto flex max-w-3xl items-center px-4 sm:px-6">
-                  <div className="flex-shrink-0">
-                    <div className="text-base font-medium text-gray-800">
-                      {user.name}
-                    </div>
-                    <div className="text-sm font-medium text-gray-500">
-                      {user.email}
-                    </div>
-                  </div>
-                </div>
                 <div className="mx-auto mt-3 max-w-3xl space-y-1 px-2 sm:px-4">
                   {userNavigation.map((item) => (
                     <a

@@ -7,6 +7,8 @@ import { type Metadata } from 'next'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 
+import { ClerkProvider } from '@clerk/nextjs'
+
 export const metadata: Metadata = {
   title: {
     template: '%s - Evenia',
@@ -42,11 +44,13 @@ export default function RootLayout({
         lexend.variable,
       )}
     >
-      <body className="flex h-full flex-col">
-        <Header />
-        <main>{children}</main>
-        <Footer />
-      </body>
+      <ClerkProvider>
+        <body className="flex h-full flex-col">
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </body>
+      </ClerkProvider>
     </html>
   )
 }
