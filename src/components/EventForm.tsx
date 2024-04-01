@@ -7,7 +7,7 @@ import { TextField, TextareaField } from './Fields'
 import type { CreateEventPayload, Event, UpdateEventPayload } from '@/types'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useCreateEvent } from '@/services/createEvent'
-import { updateEvent } from '@/services/updateEvent'
+import { useUpdateEvent } from '@/services/updateEvent'
 import { useRouter } from 'next/navigation'
 
 const locations = [
@@ -33,6 +33,7 @@ export function EventForm({ event }: { event?: Event }) {
   const { handleSubmit } = formMethods
 
   const createEvent = useCreateEvent()
+  const updateEvent = useUpdateEvent()
 
   const onSubmit = async (data: CreateEventPayload | UpdateEventPayload) => {
     const result = event?.id

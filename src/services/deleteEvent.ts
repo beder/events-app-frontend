@@ -1,6 +1,6 @@
 import { useAuthenticatedFetch } from '@/hooks/useAuthenticatedFetch'
 
-export async function deleteEvent(id: number, fetcher: typeof fetch) {
+async function deleteEvent(id: number, fetcher: typeof fetch) {
   try {
     const response = await fetcher(
       new URL(`events/${id}`, process.env.NEXT_PUBLIC_API_URL).toString(),

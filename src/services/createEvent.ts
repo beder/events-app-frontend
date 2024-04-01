@@ -1,7 +1,7 @@
 import { useAuthenticatedFetch } from '@/hooks/useAuthenticatedFetch'
 import { CreateEventPayload } from '@/types'
 
-export async function createEvent(
+async function createEvent(
   data: CreateEventPayload,
   fetcher: typeof fetch,
 ) {
