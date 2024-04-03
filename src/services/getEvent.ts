@@ -6,7 +6,7 @@ export async function getEvent(id: number): Promise<Event | undefined> {
       new URL(`events/${id}`, process.env.NEXT_PUBLIC_API_URL).toString(),
     )
 
-    return response.json()
+    return response.ok ? response.json() : undefined
   } catch (error) {
     return undefined
   }

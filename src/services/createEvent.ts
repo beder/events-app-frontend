@@ -18,7 +18,7 @@ async function createEvent(
       },
     )
 
-    return response.json()
+    return response.ok ? response.json() : undefined
   } catch (error) {
     return undefined
   }

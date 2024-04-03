@@ -14,7 +14,7 @@ export async function createPresignedUrl(
       },
     )
 
-    return response.json()
+    return response.ok ? response.json() : undefined
   } catch (error) {
     return undefined
   }

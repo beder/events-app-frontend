@@ -1,11 +1,12 @@
 import { UpdateEventPayload } from '@/types'
 import { useAuthenticatedFetch } from '@/hooks/useAuthenticatedFetch'
+import { Event } from '@/types'
 
 async function updateEvent(
   id: number,
   data: UpdateEventPayload,
   fetcher: typeof fetch,
-) {
+): Promise<Event | undefined> {
   try {
     const response = await fetcher(
       new URL(`events/${id}`, process.env.NEXT_PUBLIC_API_URL).toString(),
@@ -18,9 +19,9 @@ async function updateEvent(
       },
     )
 
-    return response.json()
+    return response.ok ? response.json() : undefined
   } catch (error) {
-    return {}
+    return undefined
   }
 }
 

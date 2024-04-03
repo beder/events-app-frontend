@@ -13,11 +13,7 @@ async function deleteEvent(
       },
     )
 
-    if (!response.ok) {
-      return undefined
-    }
-
-    return response.json()
+    return response.ok ? response.json() : undefined
   } catch (error) {
     return undefined
   }
