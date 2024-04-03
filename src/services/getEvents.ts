@@ -6,11 +6,7 @@ export async function getEvents(): Promise<Event[] | undefined> {
       new URL('events', process.env.NEXT_PUBLIC_API_URL).toString(),
     )
 
-    if (!response.ok) {
-      return undefined
-    }
-
-    return response.json()
+    return response.ok ? response.json() : undefined
   } catch (error) {
     return undefined
   }
