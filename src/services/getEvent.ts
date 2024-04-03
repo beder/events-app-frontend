@@ -1,4 +1,6 @@
-export async function getEvent(id: number) {
+import { Event } from '@/types'
+
+export async function getEvent(id: number): Promise<Event | undefined> {
   try {
     const response = await fetch(
       new URL(`events/${id}`, process.env.NEXT_PUBLIC_API_URL).toString(),
@@ -6,6 +8,6 @@ export async function getEvent(id: number) {
 
     return response.json()
   } catch (error) {
-    return []
+    return undefined
   }
 }
