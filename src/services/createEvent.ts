@@ -1,10 +1,11 @@
 import { useAuthenticatedFetch } from '@/hooks/useAuthenticatedFetch'
 import { CreateEventPayload } from '@/types'
+import { Event } from '@/types'
 
 async function createEvent(
   data: CreateEventPayload,
   fetcher: typeof fetch,
-) {
+): Promise<Event | undefined> {
   try {
     const response = await fetcher(
       new URL('events', process.env.NEXT_PUBLIC_API_URL).toString(),
@@ -19,7 +20,7 @@ async function createEvent(
 
     return response.json()
   } catch (error) {
-    return {}
+    return undefined
   }
 }
 
