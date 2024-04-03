@@ -1,4 +1,3 @@
-import { useAuthenticatedFetch } from '@/hooks/useAuthenticatedFetch'
 import { PresignedUrl } from '@/types'
 
 export async function createPresignedUrl(
