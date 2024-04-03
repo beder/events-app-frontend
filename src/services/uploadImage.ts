@@ -1,5 +1,4 @@
 import { useAuthenticatedFetch } from '@/hooks/useAuthenticatedFetch'
-import { PresignedUrl } from '@/types'
 import { createPresignedUrl } from './createPresignedUrl'
 
 async function uploadImage(
