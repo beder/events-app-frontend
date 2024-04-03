@@ -49,12 +49,12 @@ export function EventDetails({ event }: { event: Event }) {
       <div className="mx-auto max-w-7xl md:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
           <div className="relative isolate max-w-2xl overflow-hidden pr-0 sm:rounded-3xl lg:mx-0 lg:max-w-none lg:px-0">
-            <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
+            <div className="mx-auto max-w-xl max-h-96 sm:mx-0 sm:max-w-none">
               <Image
-                src={backgroundImage}
-                alt="Product screenshot"
-                width={2432}
-                height={1442}
+                src={event.imageUrl || backgroundImage}
+                alt={event.name}
+                width={576}
+                height={384}
                 className="-mb-12 w-[57rem] max-w-none bg-gray-800 ring-1 ring-white/10 sm:rounded-xl"
               />
             </div>

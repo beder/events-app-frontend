@@ -19,9 +19,11 @@ export function EventList({ events }: { events: Event[] }) {
             >
               <div className="aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none group-hover:opacity-75 sm:h-96">
                 <Image
-                  src={backgroundImage}
+                  src={event.imageUrl || backgroundImage}
                   alt={event.name}
                   className="h-full w-full object-cover object-center sm:h-full sm:w-full"
+                  width={640}
+                  height={427}
                 />
               </div>
               <div className="flex flex-1 flex-col space-y-2 p-4">

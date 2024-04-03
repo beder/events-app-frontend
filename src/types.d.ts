@@ -3,6 +3,8 @@ export type CreateEventPayload = {
   date: string
   description: string
   location: string
+  image?: File[]
+  imageUrl?: string
 }
 
 export type Event = {
@@ -12,6 +14,11 @@ export type Event = {
   description?: string
   location: string
   userId: string
+  imageUrl?: string
+}
+
+export type PresignedUrl = {
+  url: string
 }
 
 export type SelectOption = {
