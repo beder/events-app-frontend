@@ -4,9 +4,19 @@ import { useDropzone } from 'react-dropzone'
 import { useCallback, useEffect } from 'react'
 import Image from 'next/image'
 
-export function FileField({ name }: { name: string }) {
+export function FileField({
+  name,
+  imageUrl,
+}: {
+  name: string
+  imageUrl?: string
+}) {
   const { register, setValue, unregister, watch } = useFormContext()
+
   const files = watch(name)
+
+  const currentImageUrl =
+    (files?.length && URL.createObjectURL(files[0])) || imageUrl
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
@@ -34,10 +44,10 @@ export function FileField({ name }: { name: string }) {
 
   return (
     <div className="relative h-full w-full cursor-pointer" {...getRootProps()}>
-      {!!files?.length && (
+      {currentImageUrl && (
         <Image
-          src={URL.createObjectURL(files[0])}
-          alt={files[0].name}
+          src={currentImageUrl}
+          alt=""
           className="absolute inset-0 h-full w-full object-cover opacity-50"
           width={576}
           height={384}

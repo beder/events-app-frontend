@@ -70,7 +70,7 @@ export function EventForm({ event }: { event?: Event }) {
               <div className="h-full px-6 lg:px-0">
                 <div className="relative isolate mx-auto h-full max-w-2xl rounded-3xl pr-0 lg:mx-0 lg:max-w-none lg:pl-6 lg:pt-6">
                   <div className="flex h-full items-center justify-center rounded-lg border border-dashed border-gray-900/25">
-                    <FileField name="image" />
+                    <FileField name="image" imageUrl={event?.imageUrl} />
                   </div>
                 </div>
               </div>
