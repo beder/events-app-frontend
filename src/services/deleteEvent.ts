@@ -1,6 +1,10 @@
 import { useAuthenticatedFetch } from '@/hooks/useAuthenticatedFetch'
+import { Event } from '@/types'
 
-async function deleteEvent(id: number, fetcher: typeof fetch) {
+async function deleteEvent(
+  id: number,
+  fetcher: typeof fetch,
+): Promise<Event | undefined> {
   try {
     const response = await fetcher(
       new URL(`events/${id}`, process.env.NEXT_PUBLIC_API_URL).toString(),
@@ -10,12 +14,12 @@ async function deleteEvent(id: number, fetcher: typeof fetch) {
     )
 
     if (!response.ok) {
-      return null
+      return undefined
     }
 
     return response.json()
   } catch (error) {
-    return null
+    return undefined
   }
 }
 
