@@ -29,7 +29,7 @@ export function SearchBox() {
   }
 
   return (
-    <div className="w-full relative">
+    <div className="relative w-full">
       <label htmlFor="search" className="sr-only">
         Search
       </label>
@@ -51,7 +51,7 @@ export function SearchBox() {
         />
       </div>
       {events.length > 0 && (
-        <ul className="mt-2 bg-white border border-gray-200 rounded-md divide-y divide-gray-200 shadow-lg absolute w-full z-10">
+        <ul className="absolute z-10 mt-2 w-full divide-y divide-gray-200 rounded-md border border-gray-200 bg-white shadow-lg">
           {events.map((event) => (
             <li key={event.id} className="flex items-center">
               <a
