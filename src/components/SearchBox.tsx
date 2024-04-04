@@ -20,9 +20,8 @@ export function SearchBox() {
 
       setEvents(events || [])
     }
-    if (debouncedSearchQuery) {
-      searchEvents(debouncedSearchQuery)
-    }
+
+    searchEvents(debouncedSearchQuery)
   }, [debouncedSearchQuery])
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
